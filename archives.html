@@ -1,0 +1,285 @@
+<!-- credits to fightclub -->
+<!-- credits to fightclub -->
+<!-- credits to fightclub -->
+
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta http-equiv="content-language" content="en-us">
+
+    <meta name="title" content="hate.移动 — archives">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="hate.移动">
+    <meta name="description" content="hate.移动 archives">
+    <meta property="og:title" content="hate.移动 — archives">
+    <meta property="og:description" content="hate.移动 archives">
+    <meta property="og:image" content="images/banner.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="images/banner.png">
+    <title>hate.移动 — archives</title>
+    <meta name="theme-color" content="#000000">
+
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/gsap.min.js"></script>
+    <script src="js/three.min.js"></script>
+    <script src="js/opentype.min.js"></script>
+    <script src="js/TTFLoader.js"></script>
+    <script src="js/bilboFont.js"></script>
+    <script src="js/protect.js"></script>
+
+<style>
+@font-face {
+    font-family: 'Bilbo';
+    src: url('fonts/bilboregular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.warning-toggle, .warning-banner, #settingsAlert, #settingsSet,
+#latestEntry, .statusWrapper, #openAbout, .aboutMe, .ageRating,
+.playerOpacity, #loading2, .overlayre3, .overlayre1, .overlayre2,
+.overlayScreen1, .overlayScreen2, .window1, #navigationClose,
+#button4, #navigation, #navigationTwo, .moonObject,
+.portfolioWorks, .pageTitle, .vulgateClementine {
+    display: none !important;
+}
+
+.archives-back-btn {
+    position: fixed;
+    top: 20px; left: 20px;
+    z-index: 600;
+    background: rgba(0,0,0,0.9);
+    border: 1px dotted rgba(255,255,255,0.3);
+    color: #fff;
+    font-size: 10pt;
+    cursor: pointer;
+    padding: 4px 10px;
+    outline: none;
+    font-style: italic;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+}
+.archives-back-btn:hover {
+    background: rgba(255,255,255,0.95);
+    color: #000;
+    border: 1px solid #fff;
+}
+
+.archives-popup-wrapper {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 500;
+}
+
+.archives-popup {
+    position: relative;
+    width: 340px;
+    background: rgba(10, 10, 14, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.archives-popup::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('images/bayer.png') repeat;
+    background-size: 64px 64px;
+    mix-blend-mode: color-dodge;
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.archives-list {
+    position: relative;
+    z-index: 2;
+    max-height: 340px;
+    overflow-y: auto;
+    padding: 10px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.15) transparent;
+}
+
+.archives-list::-webkit-scrollbar {
+    width: 4px;
+}
+.archives-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+.archives-list::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.15);
+    border-radius: 2px;
+}
+
+.archive-entry {
+    display: block;
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 10pt;
+    font-style: italic;
+    letter-spacing: 1px;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    background: rgba(0,0,0,0.9);
+    outline: 1px dotted rgba(255,255,255,0.3);
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    margin-bottom: 4px;
+}
+
+.archive-entry:hover {
+    background: rgba(255,255,255,0.95);
+    color: #000;
+    outline: 1px solid #fff;
+}
+
+.archives-3d {
+    position: fixed;
+    top: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80vw;
+    height: 20vh;
+    z-index: 499;
+    pointer-events: none;
+    opacity: 0;
+}
+.archives-3d canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+* {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    -webkit-touch-callout: none !important;
+    -webkit-user-drag: none !important;
+}
+
+</style>
+
+</head>
+<body oncontextmenu="return false;">
+
+    <div class="invertColors"></div>
+    <div class="blackFade"></div>
+    <img class="rainClouds" src="images/bg1.jpg" draggable="false" style="opacity: 1; visibility: inherit;">
+
+    <a href="index.html" class="archives-back-btn" id="archivesBackBtn">&larr; return</a>
+
+    <div class="archives-3d" id="archives3d"></div>
+
+    <div class="flicker"></div>
+    <div class="saturate"></div>
+    <div class="coloradjust"></div>
+    <div class="contrastadjust"></div>
+    <div class="matrix"></div>
+    <div class="matrix2"></div>
+    <div class="matrix3"></div>
+    <div class="matrix4"></div>
+    <div class="matrix5"></div>
+
+<script>
+(function() {
+    var container = document.getElementById('archives3d');
+    if (!container || typeof THREE === 'undefined' || !THREE.TTFLoader || typeof BILBO_TTF_B64 === 'undefined') return;
+    var renderer;
+    try { renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true }); }
+    catch (e) { return; }
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
+
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(45, 1, 0.1, 3000);
+    var group = new THREE.Group();
+    scene.add(group);
+
+    var ambient = new THREE.AmbientLight(0xffffff, 0.55); scene.add(ambient);
+    var key = new THREE.DirectionalLight(0xffffff, 1.3); key.position.set(200, 300, 420); scene.add(key);
+    var rim = new THREE.DirectionalLight(0x7a8cff, 0.9); rim.position.set(-320, -220, 120); scene.add(rim);
+    var material = new THREE.MeshStandardMaterial({ color: 0xffffff, metalness: 0.9, roughness: 0.25, emissive: 0x1c1c30, emissiveIntensity: 0.7 });
+
+    var mesh = null;
+    try {
+        var bin = atob(BILBO_TTF_B64);
+        var bytes = new Uint8Array(bin.length);
+        for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+        var font = new THREE.Font(new THREE.TTFLoader().parse(bytes.buffer));
+        var geo = new THREE.TextGeometry('archives', { font: font, size: 60, height: 16, curveSegments: 12, bevelEnabled: true, bevelThickness: 2, bevelSize: 1.5, bevelOffset: 0, bevelSegments: 3 });
+        geo.computeBoundingBox();
+        var bb = geo.boundingBox;
+        var cx = (bb.max.x + bb.min.x) / 2, cy = (bb.max.y + bb.min.y) / 2, cz = (bb.max.z + bb.min.z) / 2;
+        mesh = new THREE.Mesh(geo, material);
+        mesh.position.set(-cx, -cy, -cz);
+        group.add(mesh);
+    } catch (e) { console.error('3D archives failed', e); return; }
+
+    function fit() {
+        var w = container.clientWidth || window.innerWidth;
+        var h = container.clientHeight || window.innerHeight;
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+        var z = Math.min(window.innerWidth, window.innerHeight) * 0.9;
+        camera.position.z = z;
+        if (mesh) {
+            var bb = mesh.geometry.boundingBox;
+            var targetPx = Math.min(window.innerWidth * 0.32, window.innerHeight * 0.42);
+            var visibleH = 2 * z * Math.tan(22.5 * Math.PI / 180);
+            var pxPerUnit = h / visibleH;
+            var scale = (targetPx / pxPerUnit) / (bb.max.x - bb.min.x);
+            group.scale.setScalar(scale);
+        }
+    }
+    fit();
+    window.addEventListener('resize', fit);
+
+    var raf = 0, start = performance.now();
+    function loop(now) {
+        raf = requestAnimationFrame(loop);
+        var t = (now - start) / 1000;
+        group.rotation.x = -0.12 + Math.sin(t * 0.22) * 0.02;
+        group.rotation.y = Math.sin(t * 0.18) * 0.08;
+        group.rotation.z = Math.sin(t * 0.26) * 0.025;
+        group.position.y = Math.sin(t * 0.55) * 7;
+        group.position.z = 0;
+        renderer.render(scene, camera);
+    }
+    loop(start);
+
+    if (typeof gsap !== 'undefined') {
+        gsap.to(container, { opacity: 1, duration: 1.1, ease: 'power2.out', delay: 0.45 });
+    } else {
+        container.style.opacity = '1';
+    }
+
+    window.addEventListener('beforeunload', function () {
+        cancelAnimationFrame(raf);
+        renderer.dispose();
+    });
+})();
+</script>
+
+</body></html>
