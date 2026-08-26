@@ -67,6 +67,32 @@
     border: 1px solid #fff;
 }
 
+.archives-auth-btn {
+    position: fixed;
+    top: calc(32vh + 20px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 600;
+    background: rgba(0,0,0,0.9);
+    border: 1px dotted rgba(255,255,255,0.3);
+    color: #fff;
+    font-size: 14pt;
+    cursor: pointer;
+    padding: 8px 0;
+    width: 360px;
+    text-align: center;
+    outline: none;
+    font-style: italic;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    letter-spacing: 2px;
+}
+.archives-auth-btn:hover {
+    background: rgba(255,255,255,0.95);
+    color: #000;
+    border: 1px solid #fff;
+}
+
 .archives-popup-wrapper {
     position: fixed;
     top: 0; left: 0;
@@ -188,6 +214,7 @@
     <img class="rainClouds" src="images/bg1.jpg" draggable="false" style="opacity: 1; visibility: inherit;">
 
     <a href="index.html" class="archives-back-btn" id="archivesBackBtn">&larr; return</a>
+    <a href="https://nomnomnom.xyz" class="archives-auth-btn" id="archivesAuthBtn">auth</a>
 
     <div class="archives-3d" id="archives3d"></div>
 
