@@ -545,6 +545,8 @@
     <audio id="lucaAudio4" preload="auto" src="media/song6.mp3"></audio>   
     <audio id="MaximAudio1" preload="auto" src="media/song3.mp3"></audio>
     <audio id="MaximAudio2" preload="auto" src="media/song4.mp3"></audio>
+    <audio id="egoAudio1" preload="auto" src="media/ego1.mp3"></audio>
+    <audio id="egoAudio2" preload="auto" src="media/ego2.mp3"></audio>
 
     <noscript>
       <div style="width:100%;height:100%;background:#000;color:#fff;font-size:2em;z-index:9999!important;position:fixed;display:flex;align-items:center;justify-content:center;">
@@ -660,6 +662,13 @@ document.addEventListener('touchstart',closeSplash,{once:true});
                 <div class="card-label">luca</div>
               </div>
             </div>
+            <div id="card-ego" class="vortex-card" data-index="2" data-base-angle="4.1887902047863905" data-profile="ego" style="z-index: 200; transform: translateX(0px) translateY(0px) translateZ(-100px) rotateY(0deg) rotateX(-8deg) rotateZ(0deg); opacity: 1; pointer-events: auto;">
+              <div class="card-face" style="transform: scale(1);">
+                <img class="card-image" src="images/ego.jpg" alt="ego" draggable="false" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="card-image-placeholder" style="display:none;">EGO</div>
+                <div class="card-label">ego</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -681,9 +690,8 @@ document.addEventListener('touchstart',closeSplash,{once:true});
         <h2 class="profile-name">Maxim</h2>
         <p class="profile-tagline">„The things you own end up owning you.“</p>
         <div class="profile-links">
-          <a href="https://t.me/sensitivelove" target="_blank" rel="noopener">Telegram</a>
-		  <a href="https://github.com/moonvgc" target="_blank" rel="noopener">Github</a>
-          <a href="https://guns.lol/vgc" target="_blank" rel="noopener">Guns</a>
+          <a href="https://t.me/sensitivelove" target="_blank" rel="noopener">telegram</a>
+          <a href="https://guns.lol/vgc" target="_blank" rel="noopener">guns</a>
         </div>
       </div>
     </div>
@@ -699,6 +707,21 @@ document.addEventListener('touchstart',closeSplash,{once:true});
       <a href="https://t.me/memoryaim" target="_blank" rel="noopener">Telegram</a>
       <a href="https://namemc.com/profile/Fxo.13" target="_blank" rel="noopener">NameMC</a>
 	  <a href="https://guns.lol/hotmail" target="_blank" rel="noopener">Guns</a>
+    </div>
+  </div>
+</div>
+
+    <div id="profile-ego" class="profile-view">
+  <div class="profile-card">
+    <img class="card-image" src="images/ego.jpg" alt="ego" draggable="false" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="card-image-placeholder" style="display:none; height:100%;">ego</div>
+  </div>
+  <div class="profile-info">
+    <h2 class="profile-name">ego</h2>
+    <p class="profile-tagline">„C++ Dev, Mega Shitposter“</p>
+    <div class="profile-links">
+      <a href="https://discord.com/users/804666654604263425" target="_blank" rel="noopener">Discord</a>
+      <a href="https://e-z.bio/£" target="_blank" rel="noopener">E-z Bio</a>
     </div>
   </div>
 </div>
@@ -728,7 +751,7 @@ document.addEventListener('touchstart',closeSplash,{once:true});
 </script>
 
 <script>
-let currentProfile=null;const landingEls=[document.querySelector('.portfolioWorks'),document.querySelector('.vulgateClementine'),document.querySelector('.pageTitle'),document.getElementById('landing-np')];const backBtn=document.getElementById('backBtn');const skipBtn=document.getElementById('skipBtn');const lucaAudio1=document.getElementById('lucaAudio1');const lucaAudio2=document.getElementById('lucaAudio2');const lucaAudio3=document.getElementById('lucaAudio3');const lucaAudio4=document.getElementById('lucaAudio4');const MaximAudio1=document.getElementById('MaximAudio1');const MaximAudio2=document.getElementById('MaximAudio2');let currentProfileAudio=null;let currentTrackIndex=0;let userInteracted=false;function playProfileAudio(profile){if(!userInteracted)return;stopProfileAudio();if(profile==='luca'){currentProfileAudio=[lucaAudio1,lucaAudio2,lucaAudio3,lucaAudio4];currentTrackIndex=0;playCurrentTrack();}else if(profile==='Maxim'){currentProfileAudio=[MaximAudio1,MaximAudio2];currentTrackIndex=0;playCurrentTrack();}}function playCurrentTrack(){if(!currentProfileAudio||currentProfileAudio.length===0)return;const audio=currentProfileAudio[currentTrackIndex];audio.volume=0.4;audio.currentTime=0;audio.play().catch(function(){});audio.onended=function(){currentTrackIndex++;if(currentTrackIndex>=currentProfileAudio.length){currentTrackIndex=0;}playCurrentTrack();};}function skipToNextTrack(){if(!currentProfileAudio||currentProfileAudio.length===0)return;currentProfileAudio[currentTrackIndex].pause();currentProfileAudio[currentTrackIndex].currentTime=0;currentTrackIndex++;if(currentTrackIndex>=currentProfileAudio.length){currentTrackIndex=0;}playCurrentTrack();}function stopProfileAudio(){if(currentProfileAudio){currentProfileAudio.forEach(function(audio){audio.pause();audio.currentTime=0;audio.onended=null;});}currentProfileAudio=null;currentTrackIndex=0;}window.showProfile=function(who){userInteracted=true;const profileEl=document.getElementById('profile-'+who);if(!profileEl||currentProfile)return;currentProfile=who;landingEls.forEach(function(el){if(el){gsap.to(el,{autoAlpha:0,duration:0.6,ease:'power2.inOut',onComplete:function(){el.classList.add('hidden-section');}});}});setTimeout(function(){profileEl.classList.add('active');gsap.fromTo(profileEl,{autoAlpha:0},{autoAlpha:1,duration:0.8,ease:'power2.out'});backBtn.classList.add('visible');gsap.to(backBtn,{autoAlpha:1,duration:0.5,ease:'power2.out'});skipBtn.style.visibility='visible';gsap.to(skipBtn,{autoAlpha:1,duration:0.5,ease:'power2.out'});playProfileAudio(who);},600);history.pushState(null,'','#'+who);};function showLanding(){if(!currentProfile)return;const profileEl=document.getElementById('profile-'+currentProfile);stopProfileAudio();gsap.to(profileEl,{autoAlpha:0,duration:0.5,ease:'power2.inOut',onComplete:function(){profileEl.classList.remove('active');}});gsap.to(backBtn,{autoAlpha:0,duration:0.3,ease:'power2.out',onComplete:function(){backBtn.classList.remove('visible');}});gsap.to(skipBtn,{autoAlpha:0,duration:0.3,ease:'power2.out',onComplete:function(){skipBtn.style.visibility='hidden';}});setTimeout(function(){landingEls.forEach(function(el){if(el){el.classList.remove('hidden-section');gsap.to(el,{autoAlpha:1,duration:0.8,ease:'power2.out'});}});},400);currentProfile=null;history.pushState(null,'',window.location.pathname);}backBtn.addEventListener('click',showLanding);skipBtn.addEventListener('click',skipToNextTrack);const VALID_PROFILES=['Maxim','luca'];window.addEventListener('popstate',function(){const hash=window.location.hash.replace('#','');if(VALID_PROFILES.indexOf(hash)!==-1){showProfile(hash);}else if(currentProfile){showLanding();}});let toast=null;function showToast(text){if(!toast){toast=document.createElement('div');toast.className='copy-toast';document.body.appendChild(toast);}toast.textContent=text;toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1800);}document.querySelectorAll('.copy-link').forEach(function(link){link.addEventListener('click',function(e){e.preventDefault();const key=link.getAttribute('data-copy');let text='';if(!text)return;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){showToast('copied: '+text);});}else{const tmp=document.createElement('textarea');tmp.value=text;tmp.style.position='fixed';tmp.style.opacity='0';document.body.appendChild(tmp);tmp.select();document.execCommand('copy');document.body.removeChild(tmp);showToast('copied: '+text);}});});document.addEventListener('contextmenu',function(e){e.preventDefault();});
+let currentProfile=null;const landingEls=[document.querySelector('.portfolioWorks'),document.querySelector('.vulgateClementine'),document.querySelector('.pageTitle'),document.getElementById('landing-np')];const backBtn=document.getElementById('backBtn');const skipBtn=document.getElementById('skipBtn');const lucaAudio1=document.getElementById('lucaAudio1');const lucaAudio2=document.getElementById('lucaAudio2');const lucaAudio3=document.getElementById('lucaAudio3');const lucaAudio4=document.getElementById('lucaAudio4');const MaximAudio1=document.getElementById('MaximAudio1');const MaximAudio2=document.getElementById('MaximAudio2');const egoAudio1=document.getElementById('egoAudio1');const egoAudio2=document.getElementById('egoAudio2');let currentProfileAudio=null;let currentTrackIndex=0;let userInteracted=false;function playProfileAudio(profile){if(!userInteracted)return;stopProfileAudio();if(profile==='luca'){currentProfileAudio=[lucaAudio1,lucaAudio2,lucaAudio3,lucaAudio4];currentTrackIndex=0;playCurrentTrack();}else if(profile==='Maxim'){currentProfileAudio=[MaximAudio1,MaximAudio2];currentTrackIndex=0;playCurrentTrack();}else if(profile==='ego'){currentProfileAudio=[egoAudio1,egoAudio2];currentTrackIndex=0;playCurrentTrack();}}function playCurrentTrack(){if(!currentProfileAudio||currentProfileAudio.length===0)return;const audio=currentProfileAudio[currentTrackIndex];audio.volume=0.4;audio.currentTime=0;audio.play().catch(function(){});audio.onended=function(){currentTrackIndex++;if(currentTrackIndex>=currentProfileAudio.length){currentTrackIndex=0;}playCurrentTrack();};}function skipToNextTrack(){if(!currentProfileAudio||currentProfileAudio.length===0)return;currentProfileAudio[currentTrackIndex].pause();currentProfileAudio[currentTrackIndex].currentTime=0;currentTrackIndex++;if(currentTrackIndex>=currentProfileAudio.length){currentTrackIndex=0;}playCurrentTrack();}function stopProfileAudio(){if(currentProfileAudio){currentProfileAudio.forEach(function(audio){audio.pause();audio.currentTime=0;audio.onended=null;});}currentProfileAudio=null;currentTrackIndex=0;}window.showProfile=function(who){userInteracted=true;const profileEl=document.getElementById('profile-'+who);if(!profileEl||currentProfile)return;currentProfile=who;landingEls.forEach(function(el){if(el){gsap.to(el,{autoAlpha:0,duration:0.6,ease:'power2.inOut',onComplete:function(){el.classList.add('hidden-section');}});}});setTimeout(function(){profileEl.classList.add('active');gsap.fromTo(profileEl,{autoAlpha:0},{autoAlpha:1,duration:0.8,ease:'power2.out'});backBtn.classList.add('visible');gsap.to(backBtn,{autoAlpha:1,duration:0.5,ease:'power2.out'});skipBtn.style.visibility='visible';gsap.to(skipBtn,{autoAlpha:1,duration:0.5,ease:'power2.out'});playProfileAudio(who);},600);history.pushState(null,'','#'+who);};function showLanding(){if(!currentProfile)return;const profileEl=document.getElementById('profile-'+currentProfile);stopProfileAudio();gsap.to(profileEl,{autoAlpha:0,duration:0.5,ease:'power2.inOut',onComplete:function(){profileEl.classList.remove('active');}});gsap.to(backBtn,{autoAlpha:0,duration:0.3,ease:'power2.out',onComplete:function(){backBtn.classList.remove('visible');}});gsap.to(skipBtn,{autoAlpha:0,duration:0.3,ease:'power2.out',onComplete:function(){skipBtn.style.visibility='hidden';}});setTimeout(function(){landingEls.forEach(function(el){if(el){el.classList.remove('hidden-section');gsap.to(el,{autoAlpha:1,duration:0.8,ease:'power2.out'});}});},400);currentProfile=null;history.pushState(null,'',window.location.pathname);}backBtn.addEventListener('click',showLanding);skipBtn.addEventListener('click',skipToNextTrack);const VALID_PROFILES=['Maxim','luca','ego'];window.addEventListener('popstate',function(){const hash=window.location.hash.replace('#','');if(VALID_PROFILES.indexOf(hash)!==-1){showProfile(hash);}else if(currentProfile){showLanding();}});let toast=null;function showToast(text){if(!toast){toast=document.createElement('div');toast.className='copy-toast';document.body.appendChild(toast);}toast.textContent=text;toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1800);}document.querySelectorAll('.copy-link').forEach(function(link){link.addEventListener('click',function(e){e.preventDefault();const key=link.getAttribute('data-copy');let text='';if(!text)return;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){showToast('copied: '+text);});}else{const tmp=document.createElement('textarea');tmp.value=text;tmp.style.position='fixed';tmp.style.opacity='0';document.body.appendChild(tmp);tmp.select();document.execCommand('copy');document.body.removeChild(tmp);showToast('copied: '+text);}});});document.addEventListener('contextmenu',function(e){e.preventDefault();});
 </script>
 
 <script>
