@@ -4,16 +4,16 @@
         <meta charset="UTF-8" />
         <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
         <meta http-equiv="content-language" content="en-us" />
-        <meta name="title" content="hate.移动 — archives" />
+        <meta name="title" content="hate.移动 — Projects" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="hate.移动" />
-        <meta name="description" content="hate.移动 archives" />
-        <meta property="og:title" content="hate.移动 — archives" />
-        <meta property="og:description" content="hate.移动 archives" />
+        <meta name="description" content="hate.移动 Projects" />
+        <meta property="og:title" content="hate.移动 — Projects" />
+        <meta property="og:description" content="hate.移动 Projects" />
         <meta property="og:image" content="images/bg1.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="images/bg1.jpg" />
-        <title>hate.移动 — archives</title>
+        <title>hate.移动 Projects</title>
         <meta name="theme-color" content="#000000" />
         <link rel="icon" href="data:," />
         <link rel="stylesheet" href="css/style.css" />
@@ -245,7 +245,6 @@
         <div class="archives-btn-group" id="archivesBtnGroup">
             <a href="https://nomnomnom.xyz" class="archives-auth-btn" id="archivesAuthBtn" target="_blank" rel="noopener">Auth</a>
             <a href="https://github.com/moonvgc" class="archives-auth-btn" id="archivesBtn2">Github</a>
-            <a href="https://github.com/moonvgc/domain-list" class="archives-auth-btn" id="archivesBtn3">Domain List</a>
         </div>
         <div class="page-transition-overlay" id="pageTransitionOverlay"></div>
         <div class="archives-3d" id="archives3d"></div>
@@ -301,7 +300,7 @@
                     var bytes = new Uint8Array(bin.length);
                     for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
                     var font = new THREE.Font(new THREE.TTFLoader().parse(bytes.buffer));
-                    var geo = new THREE.TextGeometry("archives", {
+                    var geo = new THREE.TextGeometry("Projects", {
                         font: font,
                         size: 60,
                         height: 16,
@@ -321,7 +320,7 @@
                     mesh.position.set(-cx, -cy, -cz);
                     group.add(mesh);
                 } catch (e) {
-                    console.error("3D archives failed", e);
+                    console.error("3D Projects failed", e);
                     return;
                 }
                 function fit() {
