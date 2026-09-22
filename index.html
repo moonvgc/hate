@@ -449,8 +449,9 @@
             .bottom-audio-player {
                 position: fixed;
                 bottom: 20px;
-                left: 50%;
-                transform: translateX(-50%);
+                left: 0;
+                right: 0;
+                margin: 0 auto;
                 z-index: 600;
                 display: flex;
                 align-items: center;
@@ -629,9 +630,11 @@
                 top: calc(50% - 320px) !important;
                 transform: translateX(-50%) translateY(-50%) !important;
                 text-align: center !important;
-                font-size: 56pt !important;
+                font-size: 96pt !important;
                 font-family: "Bilbo", serif !important;
                 z-index: 501 !important;
+                color: #aeb6e8 !important;
+                text-shadow: 0 0 25px rgba(28, 28, 48, 0.85), 0 0 60px rgba(122, 140, 255, 0.4) !important;
             }
             .splash-screen {
                 position: fixed;
@@ -837,7 +840,7 @@
         <audio id="bgMusic" preload="auto"></audio><audio id="rupoAudio1" preload="auto" src="media/Searching ◛⑅·˚ ༘ ♡ 私はより良くなるように努めます - Gomi (youtube).mp3"></audio
         ><audio id="rupoAudio2" preload="auto" src="media/narcissist - imsg (youtube).mp3"></audio
         ><audio id="rupoAudio3" preload="auto" src="media/wasted - regressfromshawty (youtube).mp3"></audio
-        ><audio id="MaximAudio1" preload="auto" src="media/mr popular - predayed.mp3"></audio
+        ><audio id="MaximAudio1" preload="auto" src="media/zoinbase - predayed (youtube).mp3"></audio
         ><audio id="MaximAudio2" preload="auto" src="media/safeword - whatsaheart.mp3"></audio
         ><audio id="MaximAudio3" preload="auto" src="media/Модель (Model) - slowed - DJ ZUP RAlii.mp3"></audio
         ><audio id="MaximAudio4" preload="auto" src="media/мудаком - lightprey, DOFIN.mp3"></audio
@@ -1063,8 +1066,9 @@
                 <h2 class="profile-name">maxim</h2>
                 <p class="profile-tagline">„The things you own end up owning you.“</p>
                 <div class="profile-links">
-                    <a href="https://t.me/sensitivelove" target="_blank" rel="noopener">Telegram</a
-                    ><a href="https://guns.lol/vgc" target="_blank" rel="noopener">Guns</a>
+                    <a href="https://t.me/sensitivelove" target="_blank" rel="noopener">Telegram</a>
+                    <a href="https://guns.lol/vgc" target="_blank" rel="noopener">Guns</a>
+                    <a href="https://guns.lol/vgc" target="_blank" rel="noopener">Guns</a>
                 </div>
             </div>
         </div>
@@ -1083,7 +1087,7 @@
             </div>
         </div>
         <button class="back-btn" id="backBtn">← return</button
-        ><a href="archives.html" class="archives-btn" id="archivesBtn">archives</a
+        ><a href="projects.html" class="archives-btn" id="archivesBtn">Projects</a
         ><div class="bottom-audio-player" id="bottomAudioPlayer">
             <div class="audio-equalizer" id="audioEqualizer" title="Play / Pause">
                 <span class="eq-bar bar-1"></span>
@@ -1093,7 +1097,7 @@
                 <span class="eq-bar bar-5"></span>
             </div>
             <div class="audio-meta" id="audioMeta" title="Next track">
-                <div class="audio-track-title" id="audioTrackTitle">mr popular &mdash; predayed</div>
+                <div class="audio-track-title" id="audioTrackTitle">zoinbase &mdash; predayed</div>
                 <div class="audio-artist-name" id="audioArtistName">MAXIM</div>
             </div>
             <div class="audio-progress-wrap" id="audioProgressWrap" title="Seek">
@@ -1355,7 +1359,7 @@
             let musicVolume = 0.4;
 
             const TRACK_METADATA = {
-                "mr popular - predayed.mp3": { title: "mr popular &mdash; predayed", artist: "MAXIM" },
+                "zoinbase - predayed (youtube).mp3": { title: "zoinbase &mdash; predayed", artist: "MAXIM" },
                 "safeword - whatsaheart.mp3": { title: "safeword &mdash; whatsaheart", artist: "MAXIM" },
                 "Модель (Model) - slowed - DJ ZUP RAlii.mp3": { title: "Модель (Model) (slowed) &mdash; DJ ZUP RAlii", artist: "MAXIM" },
                 "мудаком - lightprey, DOFIN.mp3": { title: "мудаком &mdash; lightprey, DOFIN", artist: "MAXIM" },
@@ -1598,7 +1602,7 @@
 
                     if (bottomAudioPlayer) {
                         bottomAudioPlayer.classList.add("active");
-                        gsap.fromTo(bottomAudioPlayer, { autoAlpha: 0, y: 25, xPercent: -50 }, { autoAlpha: 1, y: 0, xPercent: -50, duration: 0.7, ease: "power2.out" });
+                        gsap.fromTo(bottomAudioPlayer, { autoAlpha: 0, y: 25 }, { autoAlpha: 1, y: 0, duration: 0.7, ease: "power2.out" });
                     }
 
                     if (skipSongBtn) {
@@ -1656,7 +1660,6 @@
                     gsap.to(bottomAudioPlayer, {
                         autoAlpha: 0,
                         y: 15,
-                        xPercent: -50,
                         duration: 0.35,
                         ease: "power2.in",
                         onComplete: function () {
@@ -1788,7 +1791,7 @@
                 if (archivesBtn) {
                     archivesBtn.addEventListener("click", function (e) {
                         e.preventDefault();
-                        const target = this.getAttribute("href") || "archives.html";
+                        const target = this.getAttribute("href") || "projects.html";
                         if (typeof currentProfileAudio !== "undefined" && currentProfileAudio && typeof gsap !== "undefined") {
                             gsap.to(currentProfileAudio, { volume: 0, duration: 0.35 });
                         }
