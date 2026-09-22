@@ -266,15 +266,22 @@
                 letter-spacing: 1px;
                 line-height: 1.1;
                 color: #fff;
+                text-shadow:
+                    0 2px 4px rgba(0, 0, 0, 0.95),
+                    0 0 12px rgba(0, 0, 0, 0.95),
+                    0 0 45px rgba(0, 0, 0, 0.9);
             }
             .profile-tagline {
                 font-family: Georgia, "Times New Roman", serif;
                 font-size: 10pt;
                 font-style: italic;
                 margin: 8px 0 20px 0;
-                color: #e0e0e0;
+                color: #f0f0f0;
                 letter-spacing: 0.3px;
                 line-height: 1.4;
+                text-shadow:
+                    0 1px 3px rgba(0, 0, 0, 0.95),
+                    0 0 10px rgba(0, 0, 0, 0.9);
             }
             .profile-links {
                 display: flex;
@@ -445,6 +452,21 @@
             }
             .profile-dimmer.active {
                 visibility: visible;
+            }
+            body.profile-open .matrix,
+            body.profile-open .matrix2,
+            body.profile-open .matrix3,
+            body.profile-open .contrastadjust {
+                z-index: 531;
+            }
+            body.profile-open .matrix2 {
+                z-index: 532;
+            }
+            body.profile-open .contrastadjust {
+                z-index: 533;
+            }
+            body.profile-open .matrix3 {
+                z-index: 534;
             }
             .bottom-audio-player {
                 position: fixed;
@@ -633,8 +655,8 @@
                 font-size: 96pt !important;
                 font-family: "Bilbo", serif !important;
                 z-index: 501 !important;
-                color: #aeb6e8 !important;
-                text-shadow: 0 0 25px rgba(28, 28, 48, 0.85), 0 0 60px rgba(122, 140, 255, 0.4) !important;
+                color: #000 !important;
+                text-shadow: none !important;
             }
             .splash-screen {
                 position: fixed;
@@ -1564,11 +1586,12 @@
                             }
                         });
                     }
-                    history.pushState(null, "", "#" + who);
-                    return;
-                }
-                if (currentProfile === who) return;
-                currentProfile = who;
+history.pushState(null, "", "#" + who);
+                return;
+            }
+            if (currentProfile === who) return;
+            currentProfile = who;
+            document.body.classList.add("profile-open");
 
                 if (profileDimmer) {
                     profileDimmer.classList.add("active");
@@ -1618,6 +1641,7 @@
                 if (!currentProfile) return;
                 const profileEl = document.getElementById("profile-" + currentProfile);
                 stopProfileAudio();
+                document.body.classList.remove("profile-open");
 
                 if (profileBanner) {
                     gsap.to(profileBanner, {
